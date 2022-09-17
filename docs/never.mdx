@@ -1,0 +1,100 @@
+---
+slug: never
+title: Typescript's Never Gonna Let You
+authors: [cameronaziz]
+tags: [never, type]
+sidebar_position: 4
+---
+
+import ReactPlayer from 'react-player'
+
+# Typescript's `never` Gonna Let You
+
+<ReactPlayer playing controls url='https://rr4---sn-a5meknzr.googlevideo.com/videoplayback?expire=1663433561&ei=-aYlY6C5BM6NkgaByKvoCQ&ip=104.1.53.238&id=o-AMJdfQtir8Om6ygqsG9yFRr7tmOoqxOOsLVwYmqfUoCs&itag=18&source=youtube&requiressl=yes&mh=7c&mm=31,26&mn=sn-a5meknzr,sn-n4v7snee&ms=au,onr&mv=m&mvi=4&pl=20&initcwndbps=1461250&vprv=1&mime=video/mp4&ns=x34uHI3LQwIIZinWvfPY8skI&gir=yes&clen=15769511&ratebypass=yes&dur=212.096&lmt=1651671122248450&mt=1663411752&fvip=5&fexp=24001373,24007246&c=WEB&rbqsm=fr&txp=4530434&n=HoiYcgqsSqIsP2mn&sparams=expire,ei,ip,id,itag,source,requiressl,vprv,mime,ns,gir,clen,ratebypass,dur,lmt&lsparams=mh,mm,mn,ms,mv,mvi,pl,initcwndbps&lsig=AG3C_xAwRQIhAIq_QllXIm5AAwYVsK3rh87cSZK8KeejduR0XDBNjN6IAiA-nsMvKUlABT2SihbM6SDfaXxIaXc-PYawxophLhtDsA==&sig=AOq0QJ8wRQIgWpU1dZUZEIOMu_9-ybWgEW6MueMsWf2sGYMn1plJZbkCIQDZ91o1Hy93RW2aNOMoW2WhyTtcFz_39unD2cTBMzRJPQ==' />
+
+_**Yea, I trolled you with the title...**_
+
+
+## What is `never`?
+In typescript, there is a type of `never`, representing a value that should never occur. This can be used as a return type of a function that will always throw - or possibly throw.
+```typescript
+const reportError = (errorMessage: string) => {
+	throw new Error(errorMessage)
+}
+```
+This function will never return and has the type signature of:
+```typescript
+const reportMe: (errorMessage: string) => never
+```
+
+Another often appearance of `never` is the return type of a function that never resolves
+```typescript
+const exitProgram = () => {
+	process.exit()
+}
+```
+This also will also never return, as the process will never return control back to the callee, and thus has the type signature of:
+```typescript
+const exitProgram: () => never
+```
+### Binary Relations
+`never` is a subtype of anything, yet nothting is a subtype of `never`, except `never` itselt.
+```
+never <: any
+any >: never
+never <: never
+```
+### Simply Put...
+The common use case of the  `never`  type, that isn't Typescript just yelling at you, is the return type of a function that doesn't return.
+
+## Then why are we talking?
+When the Typescript compiler *does* yell at you. This often pops up when attempting to assign a value to something that should never (pun intended) be assigned.
+
+Common occurrences of this are inside inaccessible blocks and untyped initiators.
+
+### Inaccessible Blocks
+#### Problem
+```typescript
+if (typeof data === 'string' && typeof data === 'number') {
+	const dataString = data.toString()
+}
+```
+Fairly simple, within the `if` block, the variable `data` is of type `never` because both `typeof data === 'string'` AND `typeof data === 'number'` cannot be true.
+This code can never be reached, so the Typescript compiler is simply saying 'this variable will never be anything because we can't get here'.
+
+### Untyped Initiators
+#### Problem
+```typescript
+// Lets make a list that we will add the first five classmates found.
+const firstFiveClassmates = []
+
+// Loop over the people
+for (const person of people) {
+	// If they are a classmate, push the person to the array
+	if (person.isClassmate) {
+		firstFiveClassmates.push(person)
+	}
+
+	// We could have just used `.map()` and then `.filter()`.
+	// But with a for loop, we can break out!
+	if (firstFiveClassmates.length >== 5) {
+		continue
+	}
+
+}
+```
+And then Typescript throws an error, on this line:
+```typescript
+firstFiveClassmates.push(person)
+
+// Error, assuming `people` is of type `Person[]`
+Argument of type 'Person' is not assignable to parameter of type 'never'
+```
+#### Solution
+All the way back at the beginnig, we defined `firstFiveClassmates` as an empty array, but we never told Typescript compiler it will be *an array of what*. One part of the code could be adding a `Person` to the array, and another could be adding a `Llama` - because who doesn't want to have a llama in their class?
+
+Although the Typescript compiler doesn't give us much help, its an easy fix! When instantiating the array, we just define what the array elements will be.
+
+```typescript
+const firstFiveClassmates: Array<Person | Llama> = [] // Because llamas are allowes
+```
