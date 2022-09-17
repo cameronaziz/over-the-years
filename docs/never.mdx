@@ -75,9 +75,8 @@ for (const person of people) {
 		firstFiveClassmates.push(person)
 	}
 
-	// We could have just used `.map()` and then `.filter()`.
-	// But with a for loop, we can break out!
-	if (firstFiveClassmates.length >== 5) {
+	// With a for loop, we can break out!
+	if (firstFiveClassmates.length === 5) {
 		continue
 	}
 
@@ -87,14 +86,14 @@ And then Typescript throws an error, on this line:
 ```typescript
 firstFiveClassmates.push(person)
 
-// Error, assuming `people` is of type `Person[]`
+// Error, assuming `people` is of type `Person`
 Argument of type 'Person' is not assignable to parameter of type 'never'
 ```
 #### Solution
-All the way back at the beginnig, we defined `firstFiveClassmates` as an empty array, but we never told Typescript compiler it will be *an array of what*. One part of the code could be adding a `Person` to the array, and another could be adding a `Llama` - because who doesn't want to have a llama in their class?
+All the way back at the beginning, we defined `firstFiveClassmates` as an empty array, but we never told Typescript compiler it will be *an array of what*. One part of the code could be adding a `Person` to the array, and another could be adding a `Llama` - because who doesn't want to have a llama in their class?
 
 Although the Typescript compiler doesn't give us much help, its an easy fix! When instantiating the array, we just define what the array elements will be.
 
 ```typescript
-const firstFiveClassmates: Array<Person | Llama> = [] // Because llamas are allowes
+const firstFiveClassmates: Array<Person | Llama> = [] // Because llamas are always allowed, duh.
 ```
