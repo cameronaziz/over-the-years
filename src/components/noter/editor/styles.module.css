@@ -1,8 +1,6 @@
 .noterInput {
   resize: none;
   font-family: Consolas,"Liberation Mono",Courier,monospace;
-  height: 97%;
-  max-height: 97%;
   border-radius: 12px;
   padding: 12px;
   font-size: 24px;
