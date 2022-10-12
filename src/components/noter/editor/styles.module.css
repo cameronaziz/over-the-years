@@ -1,41 +1,9 @@
-.noterEditor {
-  display: flex;
-  flex-direction: row;
-  position: absolute;
-  flex-wrap: nowrap;
-  justify-content: center;
-  align-items: stretch;
-  width: 100%;
-  top: 128px;
-  bottom: 0;
-  margin: 0 48px;
-  gap: 24px;
-}
-
-.noterEditor > * {
-  display: block;
-  width: 50%;
-  max-height: 100%;
-}
-
 .noterInput {
   resize: none;
   font-family: Consolas,"Liberation Mono",Courier,monospace;
   height: 97%;
   max-height: 97%;
-  width: 45%;
   border-radius: 12px;
   padding: 12px;
   font-size: 24px;
-}
-
-.noterPreview {
-  height: 97%;
-  max-height: 97%;
-  border: 1px solid #eee;
-  overflow-y: scroll;
-  width: 55%;
-  padding: 10px;
-  border-radius: 12px;
-  background-color: rgba(231, 147, 37, 0.2);
 }

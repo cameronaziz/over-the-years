@@ -3,6 +3,36 @@
 
 const lightCodeTheme = require('prism-react-renderer/themes/github');
 const darkCodeTheme = require('prism-react-renderer/themes/dracula');
+const path = require('path')
+
+  /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
+const themeConfig = {
+  defaultMode: 'dark',
+  disableSwitch: true,
+  navbar: {
+    logo: {
+      alt: 'Over the Years Logo',
+      src: 'img/logo.svg',
+    },
+    items: [
+      {
+        type: 'doc',
+        docId: 'book',
+        position: 'left',
+        label: 'The Book',
+      },
+      {
+        href: 'https://cameronaziz.dev',
+        label: 'About Me',
+        position: 'right',
+      },
+    ],
+  },
+  // prism: {
+  //   theme: lightCodeTheme,
+  //   darkTheme: darkCodeTheme,
+  // },
+}
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
@@ -30,36 +60,26 @@ const config = {
       }),
     ],
   ],
-
-  themeConfig:
-    /** @type {import('@docusaurus/preset-classic').ThemeConfig} */
-    ({
-      defaultMode: 'dark',
-      disableSwitch: true,
-      navbar: {
-        logo: {
-          alt: 'Over the Years Logo',
-          src: 'img/logo.svg',
-        },
-        items: [
+  themeConfig,
+  plugins: [
+    [
+      path.resolve(__dirname, 'plugins', 'dynamic-routes'),
+      {
+        routes: [
           {
-            type: 'doc',
-            docId: 'book',
-            position: 'left',
-            label: 'The Book',
+            path: '/noter',
+            exact: false,
+            component: '@site/src/routes/noter/index.tsx'
           },
           {
-            href: 'https://cameronaziz.dev',
-            label: 'About Me',
-            position: 'right',
-          },
-        ],
-      },
-      prism: {
-        theme: lightCodeTheme,
-        darkTheme: darkCodeTheme,
-      },
-    }),
+            path: '/notes',
+            exact: false,
+            component: '@site/src/routes/notes/index.tsx'
+          }
+        ]
+      }
+    ],
+  ],
 };
 
 module.exports = config;

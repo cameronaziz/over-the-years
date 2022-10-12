@@ -1,20 +1,12 @@
 import React, { FC } from 'react';
-import NoteName from './noteName';
+import NoteTitle from './noteTitle';
 import styles from './styles.module.css';
 
 const NoterHeading: FC = () => {
   
   return (
     <div className={styles.heading}>
-      <NoteName />
-      <div>
-        <button>
-          Open
-        </button>
-        <button>
-          Save
-        </button>
-      </div>
+      <NoteTitle />
     </div>
   );
 };

@@ -1,35 +1,25 @@
-import React, { ChangeEvent, FC, useEffect, useState } from 'react';
-import showdown from 'showdown';
-import styles from './styles.module.css';
+import React, { ChangeEvent, FC, Fragment } from 'react'
+import styles from './styles.module.css'
+import { useRecoilState } from "recoil";
+import Markdown from '../markdown';
+import { noteContentSelector } from '@site/src/stores/notes';
 
 const NoterEditor: FC = () => {
-  const [markdownHTML, setMarkdownHTML] = useState('')
-  const [text, setText] = useState('# hello, markdown!')
-
-  useEffect(
-    () => {
-      const converter = new showdown.Converter()
-      const html = converter.makeHtml(text)
-      setMarkdownHTML(html)
-    },
-    [text],
-  );
+  const [content, setContent] = useRecoilState(noteContentSelector)
 
   const onChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
-    setText(event.target.value)
+    setContent(event.target.value)
   }
+
   return (
-    <div className={styles.noterEditor}>
+    <Fragment>
       <textarea
-        value={text}
+        value={content}
         onChange={onChange}
         className={styles.noterInput}
       />
-      <div
-        className={styles.noterPreview}
-        dangerouslySetInnerHTML={{ __html: markdownHTML }}
-      />
-    </div>
+      <Markdown />
+    </Fragment>
   );
 };
 

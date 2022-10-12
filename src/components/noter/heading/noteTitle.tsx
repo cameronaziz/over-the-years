@@ -2,35 +2,16 @@ import clsx from 'clsx';
 import React, { ChangeEvent, FC, Fragment, MouseEvent, useRef, useState } from 'react';
 import styles from './styles.module.css';
 
-const MONTHS = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-]
-
-const DEFAULT_NOTE_NAME = (() => {
-  const now = new Date()
-  const time = `${MONTHS[now.getMonth()]} ${now.getDate()}, ${now.getFullYear()}`
-  return `Noter Note - ${time}`
-})()
-
-const NoteName: FC = () => {
-  const [noteName, setNoteName] = useState(DEFAULT_NOTE_NAME)
+import { useRecoilState } from 'recoil'
+import { noteTitleSelector } from '@site/src/stores/notes';
+const NoteTitle: FC = () => {
+  const [title, setTitle] = useRecoilState(noteTitleSelector)
   const [isEditing, setIsEditing] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setNoteName(event.target.value)
+    setTitle(event.target.value)
   }
 
   const onFocus = () => {
@@ -60,7 +41,7 @@ const NoteName: FC = () => {
     <Fragment>
       <div className={isHovering ? hidden : visibleName}>
         <h1 onMouseEnter={onMouseEnter}>
-          {noteName}
+          {title}
         </h1>
       </div>
       <input
@@ -68,7 +49,7 @@ const NoteName: FC = () => {
         onMouseLeave={onMouseLeave}
         onFocus={onFocus}
         onBlur={onBlur}
-        value={noteName}
+        value={title}
         onChange={onChange}
         className={isHovering ? visibleInput : hidden}
       />
@@ -76,4 +57,4 @@ const NoteName: FC = () => {
   );
 };
 
-export default NoteName;
+export default NoteTitle;

@@ -1,0 +1,7 @@
+.noterPreview {
+  border: 1px solid #eee;
+  overflow-y: auto;
+  padding: 10px;
+  border-radius: 12px;
+  background-color: rgba(231, 147, 37, 0.2);
+}
