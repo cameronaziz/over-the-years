@@ -1,5 +1,5 @@
 import { useRecoilValue } from 'recoil'
-import React, { FC, ReactNode } from 'react'
+import React, { FC, Fragment, ReactNode } from 'react'
 import styles from './styles.module.css'
 import { noteLoadingAtom } from '@site/src/stores/notes'
 import NoterHeading from '../heading'
@@ -21,7 +21,7 @@ const NoteLayout: FC<NoteLayoutProps> = (props) => {
   }
 
   return (
-    <div>
+    <div className={styles.noteContainer}>
       <NoterHeading />
       <div className={styles.noteLayout}>
         {children}

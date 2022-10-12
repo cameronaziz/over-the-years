@@ -1,13 +1,13 @@
 .noteLayout {
   display: flex;
   flex-direction: row;
-  height: calc(100vh - 208px);
+  position: relative;
   flex-wrap: nowrap;
   justify-content: center;
   align-items: stretch;
-  padding: 0;
-  margin: 0 32px 32px;
+  margin: 0 32px 16px;
   gap: 24px;
+  flex: 1;
 }
 
 .noteLayout > * {
@@ -49,4 +49,11 @@
   100% {
     transform: rotate(1800deg);
   }
+}
+
+.noteContainer {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  
 }
