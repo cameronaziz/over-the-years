@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import React, { FC } from 'react';
-import styles from './Feature.module.css';
+import clsx from 'clsx'
+import React, { FC } from 'react'
+import styles from './Feature.module.css'
 
 export type FeatureProps = {
   title: string;
@@ -21,7 +21,7 @@ const Feature: FC<FeatureProps> = (props) => {
         <p>{description}</p>
       </div>
     </div>
-  );
+  )
 
 }
 

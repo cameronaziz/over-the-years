@@ -1,14 +1,17 @@
+import Finder from '@site/src/components/Finder'
 import NoterEditor from '@site/src/components/noter/editor'
-import NoterHeading from '@site/src/components/noter/heading'
+import NoteLayout from '@site/src/components/noter/layout'
+import useRenderNote from '@site/src/hooks/useRenderNote'
 import Layout from '@theme/Layout'
 import React, { FC } from 'react'
-import styles from './styles.module.css'
-import useLoadNote from '../../hooks/useLoadNote'
 import withRecoilRoot from '../../hoc/withRecoilRoot'
-import NoteLayout from '@site/src/components/noter/layout'
 
-const Noter: FC = () => {
-  useLoadNote('noter')
+const Writer: FC = () => {
+  useRenderNote('writer')
+
+  // return (
+  //   <Auth />
+  // )
 
   return (
     <Layout
@@ -19,7 +22,7 @@ const Noter: FC = () => {
         <NoterEditor />
       </NoteLayout>
     </Layout>
-  );
+  )
 }
 
-export default withRecoilRoot(Noter)
+export default withRecoilRoot(Writer)

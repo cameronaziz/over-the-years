@@ -1,12 +1,12 @@
+import NoteLayout from '@site/src/components/noter/layout'
+import Markdown from '@site/src/components/noter/markdown'
+import useRenderNote from '@site/src/hooks/useRenderNote'
 import Layout from '@theme/Layout'
 import React, { FC } from 'react'
-import useLoadNote from '../../hooks/useLoadNote'
 import withRecoilRoot from '../../hoc/withRecoilRoot'
-import Markdown from '@site/src/components/noter/markdown'
-import NoteLayout from '@site/src/components/noter/layout'
 
 const Notes: FC = () => {
-  useLoadNote('notes')
+  useRenderNote('notes')
 
   return (
     <Layout
@@ -17,7 +17,7 @@ const Notes: FC = () => {
         <Markdown />
       </NoteLayout>
     </Layout>
-  );
+  )
 }
 
 export default withRecoilRoot(Notes)

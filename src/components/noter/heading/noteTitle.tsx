@@ -1,9 +1,9 @@
-import clsx from 'clsx';
-import React, { ChangeEvent, FC, Fragment, MouseEvent, useRef, useState } from 'react';
-import styles from './styles.module.css';
+import clsx from 'clsx'
+import React, { ChangeEvent, FC, Fragment, useRef, useState } from 'react'
+import styles from './styles.module.css'
 
+import { noteTitleSelector } from '@site/src/stores/notes'
 import { useRecoilState } from 'recoil'
-import { noteTitleSelector } from '@site/src/stores/notes';
 const NoteTitle: FC = () => {
   const [title, setTitle] = useRecoilState(noteTitleSelector)
   const [isEditing, setIsEditing] = useState(false)
@@ -23,7 +23,7 @@ const NoteTitle: FC = () => {
     setIsHovering(false)
   }
 
-  const onMouseEnter = (event: MouseEvent) => {
+  const onMouseEnter = () => {
     setIsHovering(true)
   }
 
@@ -54,7 +54,7 @@ const NoteTitle: FC = () => {
         className={isHovering ? visibleInput : hidden}
       />
     </Fragment>
-  );
-};
+  )
+}
 
-export default NoteTitle;
+export default NoteTitle

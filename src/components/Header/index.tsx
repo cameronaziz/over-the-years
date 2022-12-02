@@ -1,10 +1,10 @@
-import useDocusaurusContext from '@docusaurus/useDocusaurusContext';
-import clsx from 'clsx';
-import React, { FC } from 'react';
-import styles from './index.module.css';
+import useDocusaurusContext from '@docusaurus/useDocusaurusContext'
+import clsx from 'clsx'
+import React, { FC } from 'react'
+import styles from './index.module.css'
 
 const Header: FC = () => {
-  const {siteConfig} = useDocusaurusContext();
+  const {siteConfig} = useDocusaurusContext()
 
   return (
     <header className={clsx('hero hero--primary', styles.heroBanner)}>
@@ -13,7 +13,7 @@ const Header: FC = () => {
         <p className="hero__subtitle">{siteConfig.tagline}</p>
       </div>
     </header>
-  );
+  )
 }
 
 export default Header

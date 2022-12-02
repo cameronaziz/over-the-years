@@ -1,6 +1,6 @@
 import styles from './styles.module.css'
-import useNoteMarkdown from '@site/src/hooks/useNoteMarkdown';
-import React, { FC } from 'react';
+import useNoteMarkdown from '@site/src/hooks/useNoteMarkdown'
+import React, { FC } from 'react'
 
 const Markdown: FC = () => {
   const [html] = useNoteMarkdown()
@@ -10,7 +10,7 @@ const Markdown: FC = () => {
       className={styles.noterPreview}
       dangerouslySetInnerHTML={{ __html: html }}
     />
-  );
-};
+  )
+}
 
-export default Markdown;
+export default Markdown

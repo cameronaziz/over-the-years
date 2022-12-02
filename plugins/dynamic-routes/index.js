@@ -1,6 +1,6 @@
 module.exports = function (context, options) {
   return {
-      name: 'plugin-dynamic-routes',
+      name: 'dynamic-routes-plugin',
 
       async contentLoaded({ content, actions }) {
           const { routes } = options

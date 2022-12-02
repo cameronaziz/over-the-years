@@ -62,19 +62,20 @@ const config = {
   ],
   themeConfig,
   plugins: [
+    path.resolve(__dirname, 'plugins', 'webpack'),
     [
       path.resolve(__dirname, 'plugins', 'dynamic-routes'),
       {
         routes: [
           {
-            path: '/noter',
+            path: '/writer',
             exact: false,
-            component: '@site/src/routes/noter/index.tsx'
+            component: '@site/src/routes/writer/index.tsx'
           },
           {
             path: '/notes',
             exact: false,
-            component: '@site/src/routes/notes/index.tsx'
+            component: '@site/src/routes/reader/index.tsx'
           }
         ]
       }

@@ -1,6 +1,6 @@
-import React, { FC } from 'react';
-import NoteTitle from './noteTitle';
-import styles from './styles.module.css';
+import React, { FC } from 'react'
+import NoteTitle from './noteTitle'
+import styles from './styles.module.css'
 
 const NoterHeading: FC = () => {
   
@@ -8,7 +8,7 @@ const NoterHeading: FC = () => {
     <div className={styles.heading}>
       <NoteTitle />
     </div>
-  );
-};
+  )
+}
 
-export default NoterHeading;
+export default NoterHeading

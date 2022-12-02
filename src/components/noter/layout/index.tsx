@@ -1,8 +1,6 @@
-import { useRecoilValue } from 'recoil'
-import React, { FC, Fragment, ReactNode } from 'react'
-import styles from './styles.module.css'
-import { noteLoadingAtom } from '@site/src/stores/notes'
+import React, { FC, ReactNode } from 'react'
 import NoterHeading from '../heading'
+import styles from './styles.module.css'
 
 type NoteLayoutProps = {
   children: ReactNode
@@ -10,15 +8,14 @@ type NoteLayoutProps = {
 
 const NoteLayout: FC<NoteLayoutProps> = (props) => {
   const { children } = props
-  const noteLoading = useRecoilValue(noteLoadingAtom)
 
-  if (noteLoading) {
-    return (
-      <div className={styles.noteLayout}>
-        <div className={styles.loading} />
-      </div>
-    )
-  }
+  // if (noteLoading) {
+  //   return (
+  //     <div className={styles.noteLayout}>
+  //       <div className={styles.loading} />
+  //     </div>
+  //   )
+  // }
 
   return (
     <div className={styles.noteContainer}>
@@ -30,4 +27,4 @@ const NoteLayout: FC<NoteLayoutProps> = (props) => {
   )
 }
 
-export default NoteLayout;
+export default NoteLayout

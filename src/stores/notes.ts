@@ -1,14 +1,5 @@
-import app from '../api/db'
-import { update, push, ref, set, get, child, getDatabase } from "firebase/database";
-
-
 import { atom, selector, SetRecoilState } from 'recoil'
-
-type Note = {
-  id: string | null
-  title: string
-  content: string
-}
+import notesAPI from '../api/notes'
 
 const MONTHS = [
   'January',
@@ -31,13 +22,13 @@ const DEFAULT_NOTE_TITLE = (() => {
   return `Noter Note - ${time}`
 })()
 
-const defaultNote: Note = {
+const defaultNote: Note.Model = {
   id: null,
   title: DEFAULT_NOTE_TITLE,
   content: '',
 }
 
-export const noteAtom = atom<Note>({
+export const noteAtom = atom<Note.Model>({
   key: 'noteAtom',
   default: defaultNote,
 })
@@ -47,44 +38,15 @@ export const noteLoadingAtom = atom<boolean>({
   default: true,
 })
 
-const createNote = (note: Note) => {
-  const { id, ...noteContent } = note
-  const db = getDatabase(app)
-  const newNoteRef = push(child(ref(db), 'notes'))
-  set(newNoteRef, {
-    ...noteContent
-  })
-  return newNoteRef.key
-}
 
-const updateNote = (note: Note) => {
-  const { id, ...noteContent } = note
-  const db = getDatabase(app)
-  set(ref(db, `notes/${id}`), {
-    ...noteContent
-  })
-}
-
-export const readNote = async (noteId: string): Promise<Omit<Note, 'id'> | null> => {
-  const db = getDatabase(app)
-  const dbRef = ref(db)
-  const snapshot = await get(child(dbRef, `notes/${noteId}`))
-
-  if (snapshot.exists()) {
-    return snapshot.val()
-  }
-
-  return null
-}
-
-const applyChanges = (note: Note, set: SetRecoilState) => {
+const applyChanges = (note: Note.Model, set: SetRecoilState) => {
   if (note.id !== null) {
-    updateNote(note)
+    notesAPI.update(note)
     set(noteAtom, note)
     return
   }
 
-  const id = createNote(note)
+  const id = notesAPI.create(note)
   note.id = id
   set(noteAtom, note)
 }

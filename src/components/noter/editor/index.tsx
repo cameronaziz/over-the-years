@@ -1,8 +1,8 @@
 import React, { ChangeEvent, FC, Fragment } from 'react'
 import styles from './styles.module.css'
-import { useRecoilState } from "recoil";
-import Markdown from '../markdown';
-import { noteContentSelector } from '@site/src/stores/notes';
+import { useRecoilState } from 'recoil'
+import Markdown from '../markdown'
+import { noteContentSelector } from '@site/src/stores/notes'
 
 const NoterEditor: FC = () => {
   const [content, setContent] = useRecoilState(noteContentSelector)
@@ -20,7 +20,7 @@ const NoterEditor: FC = () => {
       />
       <Markdown />
     </Fragment>
-  );
-};
+  )
+}
 
-export default NoterEditor;
+export default NoterEditor

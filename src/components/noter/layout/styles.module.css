@@ -10,9 +10,6 @@
   flex: 1;
 }
 
-.noteLayout > * {
-  flex: 1;
-}
 
 .loading {
   display: inline-block;

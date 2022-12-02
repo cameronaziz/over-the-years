@@ -1,5 +1,5 @@
-import React, { FC } from 'react';
-import styles from './styles.module.css';
+import React, { FC } from 'react'
+import styles from './styles.module.css'
 
 const FontSize: FC = () => {
   return (
@@ -8,7 +8,7 @@ const FontSize: FC = () => {
       <button>-</button>
       <button>+</button>
     </div>
-  );
-};
+  )
+}
 
-export default FontSize;
+export default FontSize
