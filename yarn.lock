@@ -8522,6 +8522,11 @@ type-is@~1.6.18:
     media-typer "0.3.0"
     mime-types "~2.1.24"
 
+typed-enumerate@^1.1.2:
+  version "1.1.2"
+  resolved "https://registry.yarnpkg.com/typed-enumerate/-/typed-enumerate-1.1.2.tgz#fb775b87590150e0d3c1f8ae9aa44af73c7a7404"
+  integrity sha512-IsakwSfM+4IElBA052DGg81gMLTZHXADSRhjmJ8VbwRxLn9b0o/565EePGZQDiwN7qGYr8gySm3v0B/p8TmSbw==
+
 typedarray-to-buffer@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/typedarray-to-buffer/-/typedarray-to-buffer-3.1.5.tgz#a97ee7a9ff42691b9f783ff1bc5112fe3fca9080"

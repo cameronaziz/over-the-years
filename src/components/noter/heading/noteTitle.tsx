@@ -4,11 +4,13 @@ import styles from './styles.module.css'
 
 import { noteTitleSelector } from '@site/src/stores/notes'
 import { useRecoilState } from 'recoil'
+import useListNotes from '@site/src/hooks/useListNotes'
 const NoteTitle: FC = () => {
   const [title, setTitle] = useRecoilState(noteTitleSelector)
   const [isEditing, setIsEditing] = useState(false)
   const [isHovering, setIsHovering] = useState(false)
   const inputRef = useRef<HTMLInputElement | null>(null)
+  const loadNotes = useListNotes()
 
   const onChange = (event: ChangeEvent<HTMLInputElement>) => {
     setTitle(event.target.value)
@@ -21,6 +23,7 @@ const NoteTitle: FC = () => {
   const onBlur = () => {
     setIsEditing(false)
     setIsHovering(false)
+    loadNotes()
   }
 
   const onMouseEnter = () => {

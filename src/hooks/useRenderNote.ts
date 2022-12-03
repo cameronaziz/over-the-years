@@ -1,5 +1,5 @@
 import { matchPath, useHistory, useLocation } from '@docusaurus/router'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { noteAtom, noteLoadingAtom } from '../stores/notes'
 import useLoadNote from './useLoadNote'
@@ -23,7 +23,7 @@ const useRenderNote = (basePath: string) => {
     })
 
 
-    if (id === null && matchId && matchId.params.noteId) {
+    if (matchId && matchId.params.noteId) {
       const { noteId } = matchId.params
       setNoteLoading(true)
       await load(noteId)
@@ -44,7 +44,8 @@ const useRenderNote = (basePath: string) => {
 
   useEffect(() => {
     loadNote()
-  }, [loadNote])
+  }, [loadNote, location.pathname])
+
 }
 
 export default useRenderNote

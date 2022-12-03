@@ -1,3 +1,4 @@
+import { matchPath } from '@docusaurus/router'
 import { atom, selector, SetRecoilState } from 'recoil'
 import notesAPI from '../api/notes'
 
@@ -33,11 +34,23 @@ export const noteAtom = atom<Note.Model>({
   default: defaultNote,
 })
 
-export const noteLoadingAtom = atom<boolean>({
-  key: 'noteLoadingAtom',
-  default: true,
+export const allNotesAtom = atom<Note.Model[]>({
+  key: 'allNotesAtom',
+  default: [],
 })
 
+const hasNoteId = () => {
+  const { pathname } = window.location
+  const matchId = matchPath(pathname, {
+    path: '/*/:noteId'
+  })
+  return !matchId
+}
+
+export const noteLoadingAtom = atom<boolean>({
+  key: 'noteLoadingAtom',
+  default: hasNoteId() ? true : false,
+})
 
 const applyChanges = (note: Note.Model, set: SetRecoilState) => {
   if (note.id !== null) {

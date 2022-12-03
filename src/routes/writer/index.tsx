@@ -9,16 +9,13 @@ import withRecoilRoot from '../../hoc/withRecoilRoot'
 const Writer: FC = () => {
   useRenderNote('writer')
 
-  // return (
-  //   <Auth />
-  // )
-
   return (
     <Layout
       title="Typescript Expert Knowledge"
       description="Typescript skills I've learned over the years."
     >
       <NoteLayout>
+        <Finder />
         <NoterEditor />
       </NoteLayout>
     </Layout>

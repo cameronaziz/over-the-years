@@ -34,6 +34,7 @@
     "recoil": "^0.7.6",
     "showdown": "^2.1.0",
     "styled-components": "^5.3.6",
+    "typed-enumerate": "^1.1.2",
     "uuid": "^9.0.0"
   },
   "devDependencies": {

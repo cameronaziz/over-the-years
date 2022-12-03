@@ -9,14 +9,6 @@ type NoteLayoutProps = {
 const NoteLayout: FC<NoteLayoutProps> = (props) => {
   const { children } = props
 
-  // if (noteLoading) {
-  //   return (
-  //     <div className={styles.noteLayout}>
-  //       <div className={styles.loading} />
-  //     </div>
-  //   )
-  // }
-
   return (
     <div className={styles.noteContainer}>
       <NoterHeading />
