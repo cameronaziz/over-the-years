@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "ts": "tsc --noEmit",
+    "ts": "tsc",
     "docusaurus": "docusaurus",
     "start": "docusaurus start",
     "build": "docusaurus build",
@@ -13,7 +13,6 @@
     "serve": "docusaurus serve",
     "write-translations": "docusaurus write-translations",
     "write-heading-ids": "docusaurus write-heading-ids",
-    "ts": "tsc",
     "lint": "eslint ./src"
   },
   "dependencies": {
@@ -33,6 +32,7 @@
     "react-player": "^2.11.0",
     "recoil": "^0.7.6",
     "showdown": "^2.1.0",
+    "ssr-window": "^4.0.2",
     "styled-components": "^5.3.6",
     "typed-enumerate": "^1.1.2",
     "uuid": "^9.0.0"

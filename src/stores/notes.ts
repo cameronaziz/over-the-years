@@ -1,6 +1,7 @@
 import { matchPath } from '@docusaurus/router'
 import { atom, selector, SetRecoilState } from 'recoil'
 import notesAPI from '../api/notes'
+import { getWindow } from '../utils/ssr'
 
 const MONTHS = [
   'January',
@@ -40,7 +41,7 @@ export const allNotesAtom = atom<Note.Model[]>({
 })
 
 const hasNoteId = () => {
-  const { pathname } = window.location
+  const { pathname } = getWindow().location
   const matchId = matchPath(pathname, {
     path: '/*/:noteId'
   })

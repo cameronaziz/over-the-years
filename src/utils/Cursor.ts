@@ -1,4 +1,5 @@
 import { MutableRefObject } from 'react'
+import { getDocument, getWindow } from './ssr'
 
 
 class Cursor<T extends HTMLDivElement> {
@@ -19,7 +20,8 @@ class Cursor<T extends HTMLDivElement> {
   }
 
   get position() {
-    const selection = document.getSelection()
+    const doc = getDocument()
+    const selection = doc.getSelection()
     const selectionPosition = selection.getRangeAt(0)
     this.positionCache = selectionPosition
     return selectionPosition
@@ -35,8 +37,8 @@ class Cursor<T extends HTMLDivElement> {
 
   setCursorToCached(moveCount?: number) {
     if (this.positionCache) {
-      /* ~ LOG */ console.log('~ this.positionCache', this.positionCache)
-      const selection = window.getSelection()
+      const win = getWindow()
+      const selection = win.getSelection()
       selection.removeAllRanges()
       if (typeof moveCount !== 'undefined' && this.element.childNodes.length > 0) {
         this.positionCache.setStart(this.element, moveCount)

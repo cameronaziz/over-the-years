@@ -1,3 +1,4 @@
+import ssr from '@site/src/utils/ssr'
 import deepEqual from 'fast-deep-equal'
 import { Component, createElement, createRef, HTMLAttributes, SyntheticEvent } from 'react'
 
@@ -5,22 +6,26 @@ function normalizeHtml(str: string): string {
   return str && str.replace(/&nbsp;|\u202F|\u00A0/g, ' ')
 }
 
-function replaceCaret(el: HTMLElement) {
+function replaceCaret(element: HTMLElement) {
+  const doc = ssr.getDocument()
+  const win = ssr.getWindow()
   // Place the caret at the end of the element
-  const target = document.createTextNode('')
-  el.appendChild(target)
+  const target = doc.createTextNode('')
+  element.appendChild(target)
   // do not move caret if element was not focused
-  const isTargetFocused = document.activeElement === el
+  const isTargetFocused = doc.activeElement === element
   if (target !== null && target.nodeValue !== null && isTargetFocused) {
-    const sel = window.getSelection()
-    if (sel !== null) {
-      const range = document.createRange()
+    const selection = win.getSelection()
+    if (selection !== null) {
+      const range = doc.createRange()
       range.setStart(target, target.nodeValue.length)
       range.collapse(true)
-      sel.removeAllRanges()
-      sel.addRange(range)
+      selection.removeAllRanges()
+      selection.addRange(range)
     }
-    if (el instanceof HTMLElement) el.focus()
+    if (element instanceof HTMLElement) {
+      element.focus()
+    }
   }
 }
 

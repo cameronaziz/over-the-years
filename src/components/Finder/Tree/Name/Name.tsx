@@ -4,6 +4,7 @@ import useNode from '@site/src/hooks/useNode'
 import { finderEditingNodeIdAtom } from '@site/src/stores/finder'
 import { noteAtom } from '@site/src/stores/notes'
 import { isFileNode } from '@site/src/typeGuards/finder'
+import ssr from '@site/src/utils/ssr'
 import React, { forwardRef, ForwardRefRenderFunction, KeyboardEvent as ReactKeyboardEvent, useEffect, useRef } from 'react'
 import { useRecoilState, useRecoilValue, useSetRecoilState } from 'recoil'
 import useFileIcon from '../../../../hooks/useFileIcon'
@@ -35,11 +36,13 @@ const Name: ForwardRefRenderFunction<NameRef, NameProps> = (props, ref) => {
     }
 
     if (isEditing) {
+      const doc = ssr.getDocument()
+      const win = ssr.getWindow()
       current.el.current.focus()
-      if (window.getSelection && document.createRange) {
-        const range = document.createRange()
+      if (win.getSelection && doc.createRange) {
+        const range = doc.createRange()
         range.selectNodeContents(current.el.current)
-        const selection = window.getSelection()
+        const selection = win.getSelection()
         if (selection) {
           selection.removeAllRanges()
           selection.addRange(range)
