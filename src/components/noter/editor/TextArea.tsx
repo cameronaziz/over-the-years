@@ -2,8 +2,9 @@ import { noteContentSelector } from '@site/src/stores/notes'
 import Cursor from '@site/src/utils/Cursor'
 import React, { FC, useRef, useState } from 'react'
 import { useRecoilState } from 'recoil'
+import { StyledWrapper } from '../noter.styles'
+import { StyledEditorContainer } from './Editor.styled'
 import NoteSelection from './NoteSelection'
-import styles from './styles.module.css'
 
 
 const TextArea: FC = () => {
@@ -67,18 +68,17 @@ const TextArea: FC = () => {
   }
 
   return (
-    <div className={styles.noterInputContainer}>
-      <div
+    <StyledWrapper>
+      <StyledEditorContainer
         contentEditable
         suppressContentEditableWarning
         onKeyDownCapture={onKeyDownCapture}
         ref={textAreaRef}
-        className={styles.noterInput}
       >
         {content}
-      </div>
+      </StyledEditorContainer>
       <NoteSelection isVisible={isNoteSelectionVisible} />
-    </div>
+    </StyledWrapper>
   )
 }
 
