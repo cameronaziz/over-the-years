@@ -8,9 +8,6 @@ const useListNotes = () => {
   
   const list = useCallback(async () => {
     const notes = await notesAPI.list()
-    /* ~ LOG */ console.log('~ notes', notes)
-
-  
     setAllNotes(notes)
       
   }, [setAllNotes])
