@@ -1,5 +1,5 @@
 import { matchPath, useHistory, useLocation } from '@docusaurus/router'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect } from 'react'
 import { useRecoilValue, useSetRecoilState } from 'recoil'
 import { noteAtom, noteLoadingAtom } from '../stores/notes'
 import useLoadNote from './useLoadNote'

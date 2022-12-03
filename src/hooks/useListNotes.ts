@@ -1,8 +1,7 @@
-import { useHistory, useLocation } from '@docusaurus/router'
 import { useCallback } from 'react'
 import { useSetRecoilState } from 'recoil'
-import notesAPI, { noteUpdate } from '../api/notes'
-import { allNotesAtom, noteAtom } from '../stores/notes'
+import notesAPI from '../api/notes'
+import { allNotesAtom } from '../stores/notes'
 
 const useListNotes = () => {
   const setAllNotes = useSetRecoilState(allNotesAtom)

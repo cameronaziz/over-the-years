@@ -4,5 +4,14 @@
   border-radius: 12px;
   padding: 12px;
   font-size: 24px;
+  width: 100%;
+  height: 100%;
+}
+
+.noterInputContainer {
+  position: relative;
   flex: 1;
+  width: max-content;
+  height: initial;
+  display: inline-block;
 }
